@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "958257179294",
+    "project_id": "taq-20028",
+    "storage_bucket": "taq-20028.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:958257179294:android:828671229828b27358e98f",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoPyzh8x2sEbJTkAGK8quuX-FmX6-O_jM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
