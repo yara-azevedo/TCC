@@ -52,7 +52,7 @@ public class DetalheActivity extends AppCompatActivity {
 
         saveNoteBtn.setOnClickListener( (v)-> saveNote());
 
-       // deleteNoteTextViewBtn.setOnClickListener((v)-> deleteNoteFromFirebase() );
+       deleteNoteTextViewBtn.setOnClickListener((v)-> deleteNoteFromFirebase() );
     }
 
     void saveNote(){
@@ -96,6 +96,24 @@ public class DetalheActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void deleteNoteFromFirebase() {
+        DocumentReference documentReference;
+        documentReference = Utility.getCollectionReferenceForNotes().document(docId);
+
+        documentReference.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    //note is added
+                    Toast.makeText(DetalheActivity.this, "ejected", Toast.LENGTH_SHORT).show();
+                    finish();
+                }else{
+                    Toast.makeText(DetalheActivity.this, "num apagou", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
 
