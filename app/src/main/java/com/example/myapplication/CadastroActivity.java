@@ -92,15 +92,15 @@ public class CadastroActivity extends AppCompatActivity {
 
     private boolean validateData(String email, String password, String confirmPassword) {
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            emailEditText.setError("Email is invalid");
+            Toast.makeText(this, "Email is invalid", Toast.LENGTH_SHORT).show();
             return false;
         }
         if(password.length()<6){
-            passwordEditText.setError("Password length is invalid");
+            Toast.makeText(this, "Password length is invalid", Toast.LENGTH_SHORT).show();
             return false;
         }
         if(!password.equals(confirmPassword)){
-            confirmPasswordEditText.setError("Password not matched");
+            Toast.makeText(this, "Password not matched", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

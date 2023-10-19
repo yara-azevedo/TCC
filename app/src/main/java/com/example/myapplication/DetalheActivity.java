@@ -3,10 +3,12 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,37 +18,51 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 
 public class DetalheActivity extends AppCompatActivity {
-    EditText titleEditText,contentEditText;
+    EditText et_titulo, et_genero, et_lancamento, et_avaliacao, et_comentario;
     ImageButton saveNoteBtn;
     TextView pageTitleTextView;
-    String title,content,docId;
+    String titulo, genero, lancamento, avaliacao, comentario,docId;
+
+    RadioGroup rd_group;
+
     boolean isEditMode = false;
     TextView deleteNoteTextViewBtn;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhe);
 
-        titleEditText = findViewById(R.id.notes_title_text);
-        contentEditText = findViewById(R.id.notes_content_text);
+        et_titulo = findViewById(R.id.conteudo_titulo);
+        et_genero = findViewById(R.id.conteudo_genero);
+        et_lancamento = findViewById(R.id.conteudo_lancamento);
+        et_avaliacao = findViewById(R.id.conteudo_avaliacao);
+        et_comentario = findViewById(R.id.conteudo_comentarios);
+        rd_group = findViewById(R.id.rd_group); //CONFIGURAR RADIO GROUP
+
         saveNoteBtn = findViewById(R.id.save_note_btn);
         pageTitleTextView = findViewById(R.id.page_title);
         deleteNoteTextViewBtn  = findViewById(R.id.delete_note_text_view_btn);
 
         //receive data
-        title = getIntent().getStringExtra("title");
-        content= getIntent().getStringExtra("content");
+        titulo = getIntent().getStringExtra("titulo");
+        genero = getIntent().getStringExtra("genero");
+        lancamento = getIntent().getStringExtra("lancamento");
+        avaliacao = getIntent().getStringExtra("avaliacao");
+        comentario = getIntent().getStringExtra("comentario");
         docId = getIntent().getStringExtra("docId");
 
         if(docId!=null && !docId.isEmpty()){
             isEditMode = true;
         }
-
-        titleEditText.setText(title);
-        contentEditText.setText(content);
+        et_titulo.setText(titulo);
+        et_genero.setText(genero);
+        et_lancamento.setText(lancamento);
+        et_avaliacao.setText(avaliacao);
+        et_comentario.setText(comentario);
         if(isEditMode){
-            pageTitleTextView.setText("Edit your note");
+            pageTitleTextView.setText("Edite sua anotação");
             deleteNoteTextViewBtn.setVisibility(View.VISIBLE);
         }
 
@@ -56,15 +72,22 @@ public class DetalheActivity extends AppCompatActivity {
     }
 
     void saveNote(){
-        String noteTitle = titleEditText.getText().toString();
-        String noteContent = contentEditText.getText().toString();
-        if(noteTitle==null || noteTitle.isEmpty() ){
-            titleEditText.setError("Title is required");
+        String conteudoTitulo = et_titulo.getText().toString();
+        String conteudoGenero = et_genero.getText().toString();
+        String conteudoLancamento = et_lancamento.getText().toString();
+        String conteudoAvaliacao = et_avaliacao.getText().toString();
+        String conteudoComentario = et_comentario.getText().toString();
+
+        if(conteudoTitulo==null || conteudoTitulo.isEmpty() ){
+            Toast.makeText(this, "O título é obrigatório", Toast.LENGTH_SHORT).show();
             return;
         }
         Conteudo conteudo = new Conteudo();
-        conteudo.setTitle(noteTitle);
-        conteudo.setContent(noteContent);
+        conteudo.setTitulo(conteudoTitulo);
+        conteudo.setGenero(conteudoGenero);
+        conteudo.setLancamento(conteudoLancamento);
+        conteudo.setAvaliacao(conteudoAvaliacao);
+        conteudo.setComentario(conteudoComentario);
         conteudo.setTimestamp(Timestamp.now());
 
         saveNoteToFirebase(conteudo);

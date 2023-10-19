@@ -1,42 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="8dp"
+    android:layout_marginBottom="10dp"
     android:background="@drawable/borda"
-    android:backgroundTint="#E4E3E3"
+    android:backgroundTint="@color/azul_medio"
+    android:elevation="10dp"
     android:padding="12dp">
 
-    <TextView
-        android:id="@+id/note_title_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="4dp"
-        android:text="note title"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/note_content_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/conteudo_titulo_view"
+        android:layout_width="280dp"
+        android:layout_height="27dp"
         android:layout_marginVertical="4dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="Nome"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/conteudo_tipo_view"
+        android:layout_width="34dp"
+        android:layout_height="23dp"
+        android:layout_marginVertical="4dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
         android:ellipsize="end"
         android:maxLines="2"
-        android:text="this can be note content that can be long"
+        android:text="Tipo"
         android:textColor="@color/black"
-        android:textSize="17sp" />
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/conteudo_titulo_view" />
+
+    <TextView
+        android:id="@+id/conteudo_nota_view"
+        android:layout_width="wrap_content"
+        android:layout_height="23dp"
+        android:layout_marginVertical="4dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="Nota"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/conteudo_titulo_view" />
 
     <TextView
         android:id="@+id/note_timestamp_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
         android:layout_marginVertical="4dp"
+        android:layout_marginTop="4dp"
         android:gravity="right"
         android:text="note title"
         android:textColor="@color/black"
-        android:textSize="12sp" />
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" /><![CDATA[
 
     />
 
-</LinearLayout>
+]]>
+</androidx.constraintlayout.widget.ConstraintLayout>

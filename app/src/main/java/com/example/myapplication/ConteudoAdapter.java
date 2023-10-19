@@ -24,14 +24,22 @@ public class ConteudoAdapter extends FirestoreRecyclerAdapter<Conteudo, Conteudo
 
     @Override
     protected void onBindViewHolder(@NonNull ConteudoViewHolder holder, int position, @NonNull Conteudo conteudo) {
-        holder.titleTextView.setText(conteudo.title);
-        holder.contentTextView.setText(conteudo.content);
+        holder.tituloTextView.setText(conteudo.titulo);
+        // holder.generoTextView.setText(conteudo.genero);
+        // holder.lancamentoTextView.setText(conteudo.lancamento);
+        holder.avaliacaoTextView.setText(conteudo.avaliacao);
+        //holder.comentarioTextView.setText(conteudo.comentario);
         holder.timestampTextView.setText(Utility.timestampToString(conteudo.timestamp));
 
         holder.itemView.setOnClickListener((v)->{
             Intent intent = new Intent(context,DetalheActivity.class);
-            intent.putExtra("title",conteudo.title);
-            intent.putExtra("content",conteudo.content);
+            intent.putExtra("titulo",conteudo.titulo);
+            intent.putExtra("genero",conteudo.genero);
+            intent.putExtra("lancamento",conteudo.lancamento);
+            intent.putExtra("avaliacao",conteudo.avaliacao);
+            intent.putExtra("comentario",conteudo.comentario);
+
+
             String docId = this.getSnapshots().getSnapshot(position).getId();
             intent.putExtra("docId",docId);
             context.startActivity(intent);
@@ -48,12 +56,15 @@ public class ConteudoAdapter extends FirestoreRecyclerAdapter<Conteudo, Conteudo
 
     class ConteudoViewHolder extends RecyclerView.ViewHolder{
 
-        TextView titleTextView,contentTextView,timestampTextView;
+        TextView tituloTextView, generoTextView, lancamentoTextView, avaliacaoTextView, comentarioTextView,timestampTextView;
 
         public ConteudoViewHolder(@NonNull View itemView) {
             super(itemView);
-            titleTextView = itemView.findViewById(R.id.note_title_text_view);
-            contentTextView = itemView.findViewById(R.id.note_content_text_view);
+            tituloTextView = itemView.findViewById(R.id.conteudo_titulo_view);
+            //generoTextView = itemView.findViewById(R.id.conteudo_genero);
+            //lancamentoTextView = itemView.findViewById(R.id.conteudo_lancamento);
+            avaliacaoTextView = itemView.findViewById(R.id.conteudo_nota_view);
+            //comentarioTextView = itemView.findViewById(R.id.conteudo_comentarios);
             timestampTextView = itemView.findViewById(R.id.note_timestamp_text_view);
         }
     }
