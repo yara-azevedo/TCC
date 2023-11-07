@@ -28,7 +28,9 @@ public class ConteudoAdapter extends FirestoreRecyclerAdapter<Conteudo, Conteudo
         // holder.generoTextView.setText(conteudo.genero);
         // holder.lancamentoTextView.setText(conteudo.lancamento);
         holder.avaliacaoTextView.setText(conteudo.avaliacao);
+        holder.tipoTextView.setText(conteudo.tipo);
         //holder.comentarioTextView.setText(conteudo.comentario);
+
         holder.timestampTextView.setText(Utility.timestampToString(conteudo.timestamp));
 
         holder.itemView.setOnClickListener((v)->{
@@ -37,7 +39,9 @@ public class ConteudoAdapter extends FirestoreRecyclerAdapter<Conteudo, Conteudo
             intent.putExtra("genero",conteudo.genero);
             intent.putExtra("lancamento",conteudo.lancamento);
             intent.putExtra("avaliacao",conteudo.avaliacao);
+            intent.putExtra("tipo",conteudo.tipo);
             intent.putExtra("comentario",conteudo.comentario);
+
 
 
             String docId = this.getSnapshots().getSnapshot(position).getId();
@@ -56,7 +60,7 @@ public class ConteudoAdapter extends FirestoreRecyclerAdapter<Conteudo, Conteudo
 
     class ConteudoViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tituloTextView, generoTextView, lancamentoTextView, avaliacaoTextView, comentarioTextView,timestampTextView;
+        TextView tituloTextView, generoTextView, lancamentoTextView, avaliacaoTextView, comentarioTextView,timestampTextView, tipoTextView;
 
         public ConteudoViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,6 +70,7 @@ public class ConteudoAdapter extends FirestoreRecyclerAdapter<Conteudo, Conteudo
             avaliacaoTextView = itemView.findViewById(R.id.conteudo_nota_view);
             //comentarioTextView = itemView.findViewById(R.id.conteudo_comentarios);
             timestampTextView = itemView.findViewById(R.id.note_timestamp_text_view);
+            tipoTextView = itemView.findViewById(R.id.conteudo_tipo_view);
         }
     }
 }

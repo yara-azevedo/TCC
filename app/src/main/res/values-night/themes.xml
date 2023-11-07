@@ -2,7 +2,9 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/azul_escuro</item>
+        <item name="colorSecondary">@color/azul_medio</item>
+        <item name="colorAccent">@color/azul_claro</item>
 
     </style>
 </resources>

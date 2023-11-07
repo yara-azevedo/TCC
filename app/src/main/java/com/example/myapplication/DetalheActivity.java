@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 
+import java.text.SimpleDateFormat;
+
 public class DetalheActivity extends AppCompatActivity {
     EditText et_titulo, et_genero, et_lancamento, et_avaliacao, et_comentario;
     ImageButton saveNoteBtn;
@@ -72,21 +74,28 @@ public class DetalheActivity extends AppCompatActivity {
     }
 
     void saveNote(){
+
         String conteudoTitulo = et_titulo.getText().toString();
         String conteudoGenero = et_genero.getText().toString();
         String conteudoLancamento = et_lancamento.getText().toString();
-        String conteudoAvaliacao = et_avaliacao.getText().toString();
+        int conteudoAvaliacao = Integer.parseInt(et_avaliacao.getText().toString());
         String conteudoComentario = et_comentario.getText().toString();
 
         if(conteudoTitulo==null || conteudoTitulo.isEmpty() ){
             Toast.makeText(this, "O título é obrigatório", Toast.LENGTH_SHORT).show();
             return;
-        }
+        } else if(conteudoAvaliacao>10){
+            Toast.makeText(this, "10 é a nota máxima", Toast.LENGTH_SHORT).show();
+            return;
+        }/*else if(conteudoTipo==null || conteudoTitulo.isEmpty()) {
+            Toast.makeText(this, "10 é a nota máxima", Toast.LENGTH_SHORT).show();
+            return;
+        }*/
         Conteudo conteudo = new Conteudo();
         conteudo.setTitulo(conteudoTitulo);
         conteudo.setGenero(conteudoGenero);
         conteudo.setLancamento(conteudoLancamento);
-        conteudo.setAvaliacao(conteudoAvaliacao);
+        conteudo.setAvaliacao(String.valueOf(conteudoAvaliacao));
         conteudo.setComentario(conteudoComentario);
         conteudo.setTimestamp(Timestamp.now());
 
@@ -137,6 +146,11 @@ public class DetalheActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void convertData(){
+
+
     }
 
 
