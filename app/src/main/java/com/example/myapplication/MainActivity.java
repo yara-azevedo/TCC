@@ -1,13 +1,18 @@
 package com.example.myapplication;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,9 +24,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.AggregateQuery;
+import com.google.firebase.firestore.AggregateQuerySnapshot;
+import com.google.firebase.firestore.AggregateSource;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.lang.reflect.Array;
 
@@ -35,18 +50,22 @@ public class MainActivity extends AppCompatActivity {
     String tipoDialogo;
     LinearLayout linear_count_filme, linear_count_jogo, linear_count_livro, linear_count_serie;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        String count =" ";
        find();
        count();
-
+       selectCount();
 
         fob.setOnClickListener((v)-> startActivity(new Intent(MainActivity.this, DetalheActivity.class)));
         btn_logoff.setOnClickListener((v)->logout() );
-        btn_search.setOnClickListener((v)->pesquisa() );
+        btn_search.setOnClickListener( (v) -> startActivity(new Intent(MainActivity.this, PesquisaActivity.class) ));
         btn_filter.setOnClickListener((v)->filtro() );
         setupRecyclerView();
     }
@@ -93,29 +112,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pesquisa() {
-        RelativeLayout search_layout = findViewById(R.id.search_bar_layout);
-        RelativeLayout title_layout = findViewById(R.id.title_bar_layout);
-
-        EditText et_pesquisa = findViewById(R.id.et_pesquisa);
-        ImageButton btn_pesquisaa = findViewById(R.id.btn_pesquisa);
-
-        title_layout.setVisibility(View.INVISIBLE);
-        search_layout.setVisibility(View.VISIBLE);
-        btn_pesquisaa.setOnClickListener(view -> {
-            String digitado = et_pesquisa.getText().toString();
-            Toast.makeText(getApplicationContext(), digitado, Toast.LENGTH_SHORT).show();
-            title_layout.setVisibility(View.VISIBLE);
-            search_layout.setVisibility(View.GONE);
-
-        });
-
-
 
     }
 
-    public void count(){
+    public void count() {
 
     }
+
+
 
 
     private void logout() {
@@ -169,6 +173,27 @@ public class MainActivity extends AppCompatActivity {
         linear_count_livro = findViewById(R.id.linear_count_livro);
 
 
+    }
+
+    void selectCount(){
+
+        linear_count_filme.setOnClickListener(view ->
+                Toast.makeText(getApplicationContext(), "count filme", Toast.LENGTH_SHORT).show());
+
+                 count_filme.setText("87");
+
+        linear_count_jogo.setOnClickListener(view ->
+                Toast.makeText(getApplicationContext(), "count jogo", Toast.LENGTH_SHORT).show());
+                count_jogo.setText("2");
+
+        linear_count_livro.setOnClickListener(view ->
+                Toast.makeText(getApplicationContext(), "count livro", Toast.LENGTH_SHORT).show());
+                 count_livro.setText("09");
+
+        linear_count_serie.setOnClickListener(view -> {
+            Toast.makeText(getApplicationContext(), "count serie", Toast.LENGTH_SHORT).show();
+            count_serie.setText("85");
+        });
     }
 
      /*void showMenu(){

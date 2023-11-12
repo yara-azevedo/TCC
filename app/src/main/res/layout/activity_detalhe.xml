@@ -13,6 +13,7 @@
         android:id="@+id/title_bar_layout"
         android:layout_width="379dp"
         android:layout_height="43dp"
+        android:paddingRight="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,8 +22,11 @@
             android:id="@+id/page_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/page_title"
+            android:layout_marginStart="0dp"
             android:layout_marginLeft="130dp"
-            android:text="Add New Note"
+            android:paddingLeft="15dp"
+            android:text="Nova Anotação"
             android:textColor="@color/white"
             android:textSize="32sp"
             android:textStyle="bold" />
@@ -46,7 +50,6 @@
         android:layout_height="491dp"
         android:layout_marginVertical="26dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="1dp"
         android:background="@drawable/borda"
@@ -72,47 +75,6 @@
                 tools:layout_editor_absoluteX="25dp"
                 tools:layout_editor_absoluteY="59dp">
 
-                <RadioGroup
-                    android:id="@+id/rd_group"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rd_filme"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:text="Filme" />
-
-                    <RadioButton
-                        android:id="@+id/rd_jogo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:text="Jogo" />
-
-                    <RadioButton
-                        android:id="@+id/rd_livro"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:text="Livro" />
-
-                    <RadioButton
-                        android:id="@+id/rd_série"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:text="Série" />
-                </RadioGroup>
-
                 <EditText
                     android:id="@+id/conteudo_titulo"
                     android:layout_width="match_parent"
@@ -123,6 +85,16 @@
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
+
+                <EditText
+                    android:id="@+id/conteudo_tipo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:hint="Tipo"
+                    android:padding="12dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/conteudo_genero"

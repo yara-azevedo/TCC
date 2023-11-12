@@ -13,17 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-public class ConteudoAdapter extends FirestoreRecyclerAdapter<Conteudo, ConteudoAdapter.ConteudoViewHolder> {
+public class PesquisaAdapter extends FirestoreRecyclerAdapter<Conteudo, PesquisaAdapter.ConteudoModelViewHolder> {
     Context context;
 
 
-    public ConteudoAdapter(@NonNull FirestoreRecyclerOptions<Conteudo> options, Context context) {
+    public PesquisaAdapter(@NonNull FirestoreRecyclerOptions<Conteudo> options, Context context) {
         super(options);
         this.context = context;
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ConteudoViewHolder holder, int position, @NonNull Conteudo conteudo) {
+    protected void onBindViewHolder(@NonNull PesquisaAdapter.ConteudoModelViewHolder holder, int position, @NonNull Conteudo conteudo) {
         holder.tituloTextView.setText(conteudo.titulo);
         holder.avaliacaoTextView.setText(conteudo.avaliacao);
         holder.tipoTextView.setText(conteudo.tipo);
@@ -31,6 +31,7 @@ public class ConteudoAdapter extends FirestoreRecyclerAdapter<Conteudo, Conteudo
 
         holder.itemView.setOnClickListener((v)->{
             Intent intent = new Intent(context,DetalheActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("titulo",conteudo.titulo);
             intent.putExtra("genero",conteudo.genero);
             intent.putExtra("lancamento",conteudo.lancamento);
@@ -45,20 +46,22 @@ public class ConteudoAdapter extends FirestoreRecyclerAdapter<Conteudo, Conteudo
             context.startActivity(intent);
         });
 
+
+
     }
 
     @NonNull
     @Override
-    public ConteudoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PesquisaAdapter.ConteudoModelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.conteudo_item,parent, false);
-        return new ConteudoViewHolder(view);
+        return new PesquisaAdapter.ConteudoModelViewHolder(view);
     }
 
-    class ConteudoViewHolder extends RecyclerView.ViewHolder{
+    class ConteudoModelViewHolder extends RecyclerView.ViewHolder{
 
         TextView tituloTextView, avaliacaoTextView, timestampTextView, tipoTextView;
 
-        public ConteudoViewHolder(@NonNull View itemView) {
+        public ConteudoModelViewHolder(@NonNull View itemView) {
             super(itemView);
             tituloTextView = itemView.findViewById(R.id.conteudo_titulo_view);
             avaliacaoTextView = itemView.findViewById(R.id.conteudo_nota_view);
