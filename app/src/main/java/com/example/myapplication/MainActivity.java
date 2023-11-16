@@ -111,9 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void pesquisa() {
 
-    }
 
     public void count() {
 

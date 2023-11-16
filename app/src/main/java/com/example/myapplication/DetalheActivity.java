@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static android.view.View.GONE;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +30,8 @@ public class DetalheActivity extends AppCompatActivity {
     boolean isEditMode = false;
     TextView deleteNoteTextViewBtn;
 
+    RatingBar ratingBar;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +39,7 @@ public class DetalheActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detalhe);
 
         find();
-
+        rating();
         saveNoteBtn = findViewById(R.id.save_note_btn);
 
         //receive data
@@ -58,6 +63,9 @@ public class DetalheActivity extends AppCompatActivity {
         if(isEditMode){
             pageTitleTextView.setText("Edite sua nota");
             deleteNoteTextViewBtn.setVisibility(View.VISIBLE);
+            ratingBar.setVisibility(GONE);
+        }else{
+            et_avaliacao.setVisibility(GONE);
         }
 
         saveNoteBtn.setOnClickListener( (v)-> saveNote());
@@ -71,7 +79,7 @@ public class DetalheActivity extends AppCompatActivity {
         String conteudoGenero = et_genero.getText().toString();
         String conteudoLancamento = et_lancamento.getText().toString();
         String conteudoTipo = et_tipo.getText().toString();
-        int conteudoAvaliacao = Integer.parseInt(et_avaliacao.getText().toString());
+        Double conteudoAvaliacao = Double.parseDouble(et_avaliacao.getText().toString());
         String conteudoComentario = et_comentario.getText().toString();
 
 
@@ -144,6 +152,15 @@ public class DetalheActivity extends AppCompatActivity {
         });
     }
 
+    public void rating(){
+        ratingBar.setOnRatingBarChangeListener((ratingBar, v, b) -> {
+            String notaa = String.valueOf(ratingBar.getRating());
+            Toast.makeText(getApplicationContext(), notaa, Toast.LENGTH_SHORT).show();
+            et_avaliacao.setText(notaa);
+        });
+
+    }
+
     public void convertData(){
 
     }
@@ -155,6 +172,7 @@ public class DetalheActivity extends AppCompatActivity {
         et_avaliacao = findViewById(R.id.conteudo_avaliacao);
         et_comentario = findViewById(R.id.conteudo_comentarios);
         et_tipo = findViewById(R.id.conteudo_tipo);
+        ratingBar = findViewById(R.id.ratingBar);
 
         pageTitleTextView = findViewById(R.id.page_title);
         deleteNoteTextViewBtn  = findViewById(R.id.delete_note_text_view_btn);
