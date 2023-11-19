@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -20,8 +21,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 
-import java.text.SimpleDateFormat;
-
 public class DetalheActivity extends AppCompatActivity {
     EditText et_titulo, et_genero, et_lancamento, et_avaliacao, et_comentario, et_tipo;
     ImageButton saveNoteBtn;
@@ -29,7 +28,8 @@ public class DetalheActivity extends AppCompatActivity {
     String titulo, genero, lancamento, avaliacao, comentario,tipo,docId;
     boolean isEditMode = false;
     TextView deleteNoteTextViewBtn;
-
+    RadioGroup rd_group;
+    RadioButton rb_filme, rb_serie,rb_livro, rb_jogo;
     RatingBar ratingBar;
 
     @SuppressLint("MissingInflatedId")
@@ -40,6 +40,8 @@ public class DetalheActivity extends AppCompatActivity {
 
         find();
         rating();
+        radioTipo();
+        convertData();
         saveNoteBtn = findViewById(R.id.save_note_btn);
 
         //receive data
@@ -64,8 +66,12 @@ public class DetalheActivity extends AppCompatActivity {
             pageTitleTextView.setText("Edite sua nota");
             deleteNoteTextViewBtn.setVisibility(View.VISIBLE);
             ratingBar.setVisibility(GONE);
+            rd_group.setVisibility(GONE);
+
+
         }else{
             et_avaliacao.setVisibility(GONE);
+            et_tipo.setVisibility(GONE);
         }
 
         saveNoteBtn.setOnClickListener( (v)-> saveNote());
@@ -119,16 +125,13 @@ public class DetalheActivity extends AppCompatActivity {
 
 
 
-        documentReference.set(conteudo).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    //note is added
-                    Toast.makeText(DetalheActivity.this, "fooooi", Toast.LENGTH_SHORT).show();
-                    finish();
-                }else{
-                    Toast.makeText(DetalheActivity.this, "num foi", Toast.LENGTH_SHORT).show();
-                }
+        documentReference.set(conteudo).addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                //note is added
+                Toast.makeText(DetalheActivity.this, "fooooi", Toast.LENGTH_SHORT).show();
+                finish();
+            }else{
+                Toast.makeText(DetalheActivity.this, "num foi", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -161,6 +164,22 @@ public class DetalheActivity extends AppCompatActivity {
 
     }
 
+    public void radioTipo(){
+
+        rb_serie.setOnClickListener(view -> {
+            et_tipo.setText("Série");
+        });
+        rb_livro.setOnClickListener(view -> {
+            et_tipo.setText("Livro");
+        });
+        rb_filme.setOnClickListener(view -> {
+            et_tipo.setText("Filme");
+        });
+        rb_jogo.setOnClickListener(view -> {
+            et_tipo.setText("Jogo");
+        });
+    }
+
     public void convertData(){
 
     }
@@ -176,6 +195,12 @@ public class DetalheActivity extends AppCompatActivity {
 
         pageTitleTextView = findViewById(R.id.page_title);
         deleteNoteTextViewBtn  = findViewById(R.id.delete_note_text_view_btn);
+
+        rd_group = findViewById(R.id.rd_group);
+        rb_filme = findViewById(R.id.rb_filme);
+        rb_serie = findViewById(R.id.rb_serie);
+        rb_jogo = findViewById(R.id.rb_jogo);
+        rb_livro = findViewById(R.id.rb_livro);
 
     }
 

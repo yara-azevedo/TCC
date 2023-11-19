@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        String count =" ";
+       String count =" ";
        find();
        count();
        selectCount();
@@ -71,53 +71,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void filtro() {
-        Toast.makeText(getApplicationContext(), "filtro", Toast.LENGTH_SHORT).show();
-        alert();
-
-
-
     }
-
-    public void alert(){
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-
-        dialog.setTitle("Filtro")
-                .setItems(new CharSequence[]{"Filmes", "Jogos", "Livros", "Séries", "Tudo"}, (dialog1, i) -> {
-                    switch (i) {
-                        case 0:
-                            Toast.makeText(getApplicationContext(), "Filmes", Toast.LENGTH_SHORT).show();
-                            tipoDialogo= "Filmes";
-                            break;
-                        case 1:
-                            Toast.makeText(getApplicationContext(), "Jogos", Toast.LENGTH_SHORT).show();
-                            tipoDialogo= "Jogos";
-                            break;
-                        case 2:
-                            Toast.makeText(getApplicationContext(), "Livros", Toast.LENGTH_SHORT).show();
-                            tipoDialogo= "Livros";
-                            break;
-                        case 3:
-                            Toast.makeText(getApplicationContext(), "Séries", Toast.LENGTH_SHORT).show();
-                            tipoDialogo= "Séries";
-                            break;
-                        case 4:
-                            Toast.makeText(getApplicationContext(), "Tudo", Toast.LENGTH_SHORT).show();
-                            tipoDialogo= "Tudo";
-                            break;
-                    }
-                });
-
-        dialog.create().show();
-
-    }
-
 
 
     public void count() {
 
     }
-
-
 
 
     private void logout() {
@@ -193,6 +152,39 @@ public class MainActivity extends AppCompatActivity {
             count_serie.setText("85");
         });
     }
+
+    /*  public void alert(){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+
+        dialog.setTitle("Filtro")
+                .setItems(new CharSequence[]{"Filmes", "Jogos", "Livros", "Séries", "Tudo"}, (dialog1, i) -> {
+                    switch (i) {
+                        case 0:
+                            Toast.makeText(getApplicationContext(), "Filmes", Toast.LENGTH_SHORT).show();
+                            tipoDialogo= "Filmes";
+                            break;
+                        case 1:
+                            Toast.makeText(getApplicationContext(), "Jogos", Toast.LENGTH_SHORT).show();
+                            tipoDialogo= "Jogos";
+                            break;
+                        case 2:
+                            Toast.makeText(getApplicationContext(), "Livros", Toast.LENGTH_SHORT).show();
+                            tipoDialogo= "Livros";
+                            break;
+                        case 3:
+                            Toast.makeText(getApplicationContext(), "Séries", Toast.LENGTH_SHORT).show();
+                            tipoDialogo= "Séries";
+                            break;
+                        case 4:
+                            Toast.makeText(getApplicationContext(), "Tudo", Toast.LENGTH_SHORT).show();
+                            tipoDialogo= "Tudo";
+                            break;
+                    }
+                });
+
+        dialog.create().show();
+
+    }*/
 
      /*void showMenu(){
         PopupMenu popupMenu  = new PopupMenu(MainActivity.this,btn_logoff);

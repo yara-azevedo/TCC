@@ -18,6 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <TextView
             android:id="@+id/page_title"
             android:layout_width="wrap_content"
@@ -75,6 +76,47 @@
                 tools:layout_editor_absoluteX="25dp"
                 tools:layout_editor_absoluteY="59dp">
 
+                <RadioGroup
+                    android:id="@+id/rd_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_filme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:text="Filme" />
+
+                    <RadioButton
+                        android:id="@+id/rb_jogo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:text="Jogo" />
+
+                    <RadioButton
+                        android:id="@+id/rb_livro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:text="Livro" />
+
+                    <RadioButton
+                        android:id="@+id/rb_serie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:text="Série" />
+                </RadioGroup>
+
                 <EditText
                     android:id="@+id/conteudo_titulo"
                     android:layout_width="match_parent"
@@ -106,7 +148,9 @@
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
-                <EditText
+
+
+                <com.vicmikhailau.maskededittext.MaskedEditText
                     android:id="@+id/conteudo_lancamento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -114,7 +158,9 @@
                     android:hint="Data de Lançamento"
                     android:padding="12dp"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    app:mask="##/##/##"
+                    android:inputType="date"/>
 
                 <RatingBar
                     android:id="@+id/ratingBar"
