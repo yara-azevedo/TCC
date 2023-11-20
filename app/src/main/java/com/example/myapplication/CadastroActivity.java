@@ -33,12 +33,9 @@ public class CadastroActivity extends AppCompatActivity {
         fin();
 
         createAccountBtn.setOnClickListener(v-> createAccount());
-        loginBtnTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(CadastroActivity.this, LoginActivity.class));
-                finish();
-            }
+        loginBtnTextView.setOnClickListener(view -> {
+            startActivity(new Intent(CadastroActivity.this, LoginActivity.class));
+            finish();
         });
 
     }
@@ -61,20 +58,17 @@ public class CadastroActivity extends AppCompatActivity {
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(CadastroActivity.this,
-                new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        changeInProgress(false);
-                        if(task.isSuccessful()){
-                            //creating acc is done
-                            Toast.makeText(CadastroActivity.this, "ihuuu XD", Toast.LENGTH_SHORT).show();
-                            firebaseAuth.getCurrentUser().sendEmailVerification();
-                            firebaseAuth.signOut();
-                            finish();
-                        }else{
-                            //failure
-                            Toast.makeText(CadastroActivity.this, "NÃO ihuuu X(", Toast.LENGTH_SHORT).show();
-                        }
+                task -> {
+                    changeInProgress(false);
+                    if(task.isSuccessful()){
+                        //creating acc is done
+                        Toast.makeText(CadastroActivity.this, "ihuuu XD", Toast.LENGTH_SHORT).show();
+                        firebaseAuth.getCurrentUser().sendEmailVerification();
+                        firebaseAuth.signOut();
+                        finish();
+                    }else{
+                        //failure
+                        Toast.makeText(CadastroActivity.this, "NÃO ihuuu X(", Toast.LENGTH_SHORT).show();
                     }
                 }
         );

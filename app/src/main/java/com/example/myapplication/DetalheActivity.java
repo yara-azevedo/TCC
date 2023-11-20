@@ -23,11 +23,11 @@ import com.google.firebase.firestore.DocumentReference;
 
 public class DetalheActivity extends AppCompatActivity {
     EditText et_titulo, et_genero, et_lancamento, et_avaliacao, et_comentario, et_tipo;
-    ImageButton saveNoteBtn;
+    ImageButton saveBtn;
     TextView pageTitleTextView;
     String titulo, genero, lancamento, avaliacao, comentario,tipo,docId;
     boolean isEditMode = false;
-    TextView deleteNoteTextViewBtn;
+    TextView deleteTextViewBtn;
     RadioGroup rd_group;
     RadioButton rb_filme, rb_serie,rb_livro, rb_jogo;
     RatingBar ratingBar;
@@ -41,8 +41,7 @@ public class DetalheActivity extends AppCompatActivity {
         find();
         rating();
         radioTipo();
-        convertData();
-        saveNoteBtn = findViewById(R.id.save_note_btn);
+        saveBtn = findViewById(R.id.save_note_btn);
 
         //receive data
         titulo = getIntent().getStringExtra("titulo");
@@ -64,7 +63,7 @@ public class DetalheActivity extends AppCompatActivity {
         et_comentario.setText(comentario);
         if(isEditMode){
             pageTitleTextView.setText("Edite sua nota");
-            deleteNoteTextViewBtn.setVisibility(View.VISIBLE);
+            deleteTextViewBtn.setVisibility(View.VISIBLE);
             ratingBar.setVisibility(GONE);
             rd_group.setVisibility(GONE);
 
@@ -74,12 +73,12 @@ public class DetalheActivity extends AppCompatActivity {
             et_tipo.setVisibility(GONE);
         }
 
-        saveNoteBtn.setOnClickListener( (v)-> saveNote());
+        saveBtn.setOnClickListener( (v)-> saveConteudo());
 
-       deleteNoteTextViewBtn.setOnClickListener((v)-> deleteNoteFromFirebase() );
+       deleteTextViewBtn.setOnClickListener((v)-> deleteConteudoFromFirebase() );
     }
 
-    void saveNote(){
+    void saveConteudo(){
 
         String conteudoTitulo = et_titulo.getText().toString();
         String conteudoGenero = et_genero.getText().toString();
@@ -109,11 +108,11 @@ public class DetalheActivity extends AppCompatActivity {
         conteudo.setComentario(conteudoComentario);
         conteudo.setTimestamp(Timestamp.now());
 
-        saveNoteToFirebase(conteudo);
+        saveConteudoToFirebase(conteudo);
 
     }
 
-    void saveNoteToFirebase(Conteudo conteudo){
+    void saveConteudoToFirebase(Conteudo conteudo){
         DocumentReference documentReference;
         if(isEditMode){
             //update the note
@@ -137,7 +136,7 @@ public class DetalheActivity extends AppCompatActivity {
 
     }
 
-    private void deleteNoteFromFirebase() {
+    private void deleteConteudoFromFirebase() {
         DocumentReference documentReference;
         documentReference = Utility.getCollectionReferenceForNotes().document(docId);
 
@@ -180,9 +179,6 @@ public class DetalheActivity extends AppCompatActivity {
         });
     }
 
-    public void convertData(){
-
-    }
 
     public void find(){
         et_titulo = findViewById(R.id.conteudo_titulo);
@@ -194,7 +190,7 @@ public class DetalheActivity extends AppCompatActivity {
         ratingBar = findViewById(R.id.ratingBar);
 
         pageTitleTextView = findViewById(R.id.page_title);
-        deleteNoteTextViewBtn  = findViewById(R.id.delete_note_text_view_btn);
+        deleteTextViewBtn  = findViewById(R.id.delete_text_view);
 
         rd_group = findViewById(R.id.rd_group);
         rb_filme = findViewById(R.id.rb_filme);

@@ -59,24 +59,21 @@ public class LoginActivity extends AppCompatActivity {
     void loginAccountInFirebase(String email,String password){
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         changeInProgress(true);
-        firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                changeInProgress(false);
-                if(task.isSuccessful()){
-                    //login is success
-                    if(firebaseAuth.getCurrentUser().isEmailVerified()){
-                        //go to mainactivity
-                        startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                        finish();
-                    }else{
-                        Toast.makeText(LoginActivity.this, "email n verificado", Toast.LENGTH_SHORT).show();
-                    }
-
+        firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
+            changeInProgress(false);
+            if(task.isSuccessful()){
+                //login is success
+                if(firebaseAuth.getCurrentUser().isEmailVerified()){
+                    //go to mainactivity
+                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                    finish();
                 }else{
-                    //login failed
-                    Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "email n verificado", Toast.LENGTH_SHORT).show();
                 }
+
+            }else{
+                //login failed
+                Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

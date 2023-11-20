@@ -76,10 +76,10 @@ public class PesquisaActivity extends AppCompatActivity {
     }
 
     public void find(){
-        searchInput = findViewById(R.id.seach_username_input);
-        searchButton = findViewById(R.id.search_user_btn);
-        backButton = findViewById(R.id.back_btn);
-        recyclerView = findViewById(R.id.search_user_recycler_view);
+        searchInput = findViewById(R.id.seach_input);
+        searchButton = findViewById(R.id.search_btn);
+        backButton = findViewById(R.id.btn_back);
+        recyclerView = findViewById(R.id.search_recycler_view);
 
         searchInput.requestFocus();
     }
