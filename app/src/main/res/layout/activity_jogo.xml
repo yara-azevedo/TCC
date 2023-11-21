@@ -6,50 +6,36 @@
     android:layout_height="match_parent"
     android:background="@color/azul_escuro"
     android:padding="16dp"
-    tools:context=".MainActivity">
+    tools:context=".JogoActivity">
 
     <RelativeLayout
         android:id="@+id/title_bar"
         android:layout_width="0dp"
         android:layout_height="62dp"
+        android:layout_marginBottom="11dp"
         android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/count_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.363">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/page_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="taQi"
+            android:text="Jogos"
             android:textColor="@color/white"
             android:textSize="32sp"
             android:textStyle="bold" />
 
         <ImageButton
-            android:id="@+id/btn_logoff"
+            android:id="@+id/btn_back"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_alignParentEnd="true"
-
             android:layout_centerVertical="true"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerInside"
-            android:src="@drawable/icon" />
-
-        <ImageButton
-            android:id="@+id/btn_search"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-
-            android:layout_marginEnd="20dp"
-            android:layout_toStartOf="@+id/btn_logoff"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="centerCrop"
-            android:src="@drawable/icon_pesq" />
-
+            android:src="@drawable/icon_arrow" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -241,17 +227,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/count_layout" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_note_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:padding="10dp"
-        android:src="@drawable/add_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

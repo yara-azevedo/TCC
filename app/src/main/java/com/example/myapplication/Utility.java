@@ -9,7 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.text.SimpleDateFormat;
 
 public class Utility {
-    static CollectionReference getCollectionReferenceForNotes(){
+    static CollectionReference getCollectionReference(){
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         return FirebaseFirestore.getInstance().collection("conteudo")
                 .document(currentUser.getUid()).collection("my_conteudo");

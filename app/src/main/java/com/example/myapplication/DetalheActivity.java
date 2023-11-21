@@ -116,10 +116,10 @@ public class DetalheActivity extends AppCompatActivity {
         DocumentReference documentReference;
         if(isEditMode){
             //update the note
-            documentReference = Utility.getCollectionReferenceForNotes().document(docId);
+            documentReference = Utility.getCollectionReference().document(docId);
         }else{
             //create new note
-            documentReference = Utility.getCollectionReferenceForNotes().document();
+            documentReference = Utility.getCollectionReference().document();
         }
 
 
@@ -138,7 +138,7 @@ public class DetalheActivity extends AppCompatActivity {
 
     private void deleteConteudoFromFirebase() {
         DocumentReference documentReference;
-        documentReference = Utility.getCollectionReferenceForNotes().document(docId);
+        documentReference = Utility.getCollectionReference().document(docId);
 
         documentReference.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

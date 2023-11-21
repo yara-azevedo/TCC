@@ -13,6 +13,18 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".LivroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SerieActivity"
+            android:exported="false" />
+        <activity
+            android:name=".JogoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FilmeActivity"
+            android:exported="false" />
+        <activity
             android:name=".PesquisaActivity"
             android:exported="false" />
         <activity
