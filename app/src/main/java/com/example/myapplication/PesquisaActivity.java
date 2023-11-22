@@ -41,7 +41,7 @@ public class PesquisaActivity extends AppCompatActivity {
     }
 
     void setupSearchRecyclerView(String searchTerm){
-        Query query  = Utility.getCollectionReference().whereGreaterThanOrEqualTo("titulo", searchTerm);
+        Query query  = Utility.getCollectionReference().whereEqualTo("titulo", searchTerm);
         FirestoreRecyclerOptions<Conteudo> options = new FirestoreRecyclerOptions.Builder<Conteudo>()
                 .setQuery(query,Conteudo.class).build();
         adapter = new PesquisaAdapter(options,getApplicationContext());

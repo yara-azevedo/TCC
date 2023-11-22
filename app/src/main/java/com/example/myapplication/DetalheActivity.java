@@ -113,10 +113,12 @@ public class DetalheActivity extends AppCompatActivity {
     }
 
     void saveConteudoToFirebase(Conteudo conteudo){
+        String conteudoTipo = et_tipo.getText().toString();
         DocumentReference documentReference;
         if(isEditMode){
             //update the note
             documentReference = Utility.getCollectionReference().document(docId);
+
         }else{
             //create new note
             documentReference = Utility.getCollectionReference().document();

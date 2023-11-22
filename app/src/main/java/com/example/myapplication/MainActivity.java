@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,10 +10,16 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.AggregateQuery;
+import com.google.firebase.firestore.AggregateQuerySnapshot;
+import com.google.firebase.firestore.AggregateSource;
 import com.google.firebase.firestore.Query;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
     public String tipoFiltro;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
 
        find();
-       count();
+       countF(); countJ(); countL(); countS();
        selectFiltro();
 
         fob.setOnClickListener((v)-> startActivity(new Intent(MainActivity.this, DetalheActivity.class)));
@@ -46,7 +51,79 @@ public class MainActivity extends AppCompatActivity {
         setupRecyclerView();
     }
 
-    public void count() {
+    public void countF() {
+        String test = "Filme";
+        Query query  = Utility.getCollectionReference()
+                .whereEqualTo("tipo", test);
+        AggregateQuery countQ = query.count();
+        countQ.get(AggregateSource.SERVER).addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                AggregateQuerySnapshot snapshot = task.getResult();
+                String countF = String.valueOf(snapshot.getCount());
+                count_filme.setText(countF);
+            } else{
+                System.out.println("COUNT  no");
+            }
+        });
+
+
+
+    }
+
+    public void countS() {
+        String test = "Série";
+        Query query  = Utility.getCollectionReference()
+                .whereEqualTo("tipo", test);
+        AggregateQuery countQ = query.count();
+        countQ.get(AggregateSource.SERVER).addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                AggregateQuerySnapshot snapshot = task.getResult();
+                String countS = String.valueOf(snapshot.getCount());
+                count_serie.setText(countS);
+            } else{
+                System.out.println("COUNT  no");
+            }
+        });
+
+
+
+    }
+
+    public void countJ() {
+        String test = "Jogo";
+        Query query  = Utility.getCollectionReference()
+                .whereEqualTo("tipo", test);
+        AggregateQuery countQ = query.count();
+        countQ.get(AggregateSource.SERVER).addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                AggregateQuerySnapshot snapshot = task.getResult();
+                String countJ = String.valueOf(snapshot.getCount());
+                count_jogo.setText(countJ);
+            } else{
+                System.out.println("COUNT  no");
+            }
+        });
+
+
+
+    }
+
+    public void countL() {
+        String test = "Livro";
+        Query query  = Utility.getCollectionReference()
+                .whereEqualTo("tipo", test);
+        AggregateQuery countQ = query.count();
+        countQ.get(AggregateSource.SERVER).addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                AggregateQuerySnapshot snapshot = task.getResult();
+                String countL = String.valueOf(snapshot.getCount());
+                count_livro.setText(countL);
+            } else{
+                System.out.println("COUNT  no");
+            }
+        });
+
+
 
     }
     void selectFiltro(){
@@ -66,8 +143,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, LivroActivity.class)));
         tipoFiltro = "Livro";
     }
-
-
 
     private void logout() {
         FirebaseAuth.getInstance().signOut();
@@ -118,10 +193,7 @@ public class MainActivity extends AppCompatActivity {
         linear_count_serie = findViewById(R.id.linear_count_serie);
         linear_count_livro = findViewById(R.id.linear_count_livro);
 
-
     }
-
-
 
 }
 
