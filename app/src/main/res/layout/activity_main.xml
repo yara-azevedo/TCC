@@ -40,23 +40,12 @@
             android:src="@drawable/icon" />
 
         <ImageButton
-            android:id="@+id/btn_filter"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_alignParentEnd="true"
-
-            android:layout_marginEnd="44dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="centerInside"
-            android:src="@drawable/icon_filter" />
-
-        <ImageButton
             android:id="@+id/btn_search"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:layout_alignParentEnd="true"
 
-            android:layout_marginEnd="89dp"
+            android:layout_marginEnd="20dp"
+            android:layout_toStartOf="@+id/btn_logoff"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerCrop"
             android:src="@drawable/icon_pesq" />
