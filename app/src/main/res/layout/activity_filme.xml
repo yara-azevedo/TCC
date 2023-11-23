@@ -75,19 +75,19 @@
 
     <LinearLayout
         android:id="@+id/count_layout"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
         android:layout_marginTop="90dp"
         android:background="@drawable/borda"
         android:backgroundTint="@color/white"
         android:orientation="horizontal"
-        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:layout_gravity="center_vertical"
             android:id="@+id/linear_count_filme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -114,12 +114,14 @@
                 android:text="-"
                 android:textAlignment="center"
                 android:textAllCaps="false"
+                android:textColor="@color/azul_claro"
                 android:textIsSelectable="false"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
+            android:layout_gravity="center_vertical"
             android:id="@+id/linear_count_jogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -146,12 +148,14 @@
                 android:text="-"
                 android:textAlignment="center"
                 android:textAllCaps="false"
+                android:textColor="@color/azul_claro"
                 android:textIsSelectable="false"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
+            android:layout_gravity="center_vertical"
             android:id="@+id/linear_count_livro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -178,12 +182,14 @@
                 android:text="-"
                 android:textAlignment="center"
                 android:textAllCaps="false"
+                android:textColor="@color/azul_claro"
                 android:textIsSelectable="false"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
+            android:layout_gravity="center_vertical"
             android:id="@+id/linear_count_serie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -210,6 +216,7 @@
                 android:text="-"
                 android:textAlignment="center"
                 android:textAllCaps="false"
+                android:textColor="@color/azul_claro"
                 android:textIsSelectable="false"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -219,10 +226,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyler_view"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="15dp"
-        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

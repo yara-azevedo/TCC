@@ -126,22 +126,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     void selectFiltro(){
         linear_count_filme.setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, FilmeActivity.class)));
-        tipoFiltro = "Filme";
 
         linear_count_serie.setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, SerieActivity.class)));
-        tipoFiltro = "Série";
 
         linear_count_jogo.setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, JogoActivity.class)));
-        tipoFiltro = "Jogo";
 
         linear_count_livro.setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, LivroActivity.class)));
-        tipoFiltro = "Livro";
     }
 
     private void logout() {
@@ -163,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         conteudoAdapter.startListening();
+        countF(); countJ(); countL(); countS();
     }
 
     @Override
@@ -175,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         conteudoAdapter.notifyDataSetChanged();
+        countF(); countJ(); countL(); countS();
     }
 
     public void find(){

@@ -86,15 +86,15 @@ public class CadastroActivity extends AppCompatActivity {
 
     private boolean validateData(String email, String password, String confirmPassword) {
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            Toast.makeText(this, "Email is invalid", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "E-mail Inválido :/", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(password.length()<6){
-            Toast.makeText(this, "Password length is invalid", Toast.LENGTH_SHORT).show();
+        if(password.length()<5){
+            Toast.makeText(this, "Senha muito curta :/", Toast.LENGTH_SHORT).show();
             return false;
         }
         if(!password.equals(confirmPassword)){
-            Toast.makeText(this, "Password not matched", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "A senha não é a mesma :(", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

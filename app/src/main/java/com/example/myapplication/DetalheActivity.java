@@ -27,7 +27,7 @@ public class DetalheActivity extends AppCompatActivity {
     TextView pageTitleTextView;
     String titulo, genero, lancamento, avaliacao, comentario,tipo,docId;
     boolean isEditMode = false;
-    TextView deleteTextViewBtn;
+    TextView deleteTextViewBtn, saveTextViewBtn;
     RadioGroup rd_group;
     RadioButton rb_filme, rb_serie,rb_livro, rb_jogo;
     RatingBar ratingBar;
@@ -41,7 +41,7 @@ public class DetalheActivity extends AppCompatActivity {
         find();
         rating();
         radioTipo();
-        saveBtn = findViewById(R.id.save_note_btn);
+
 
         //receive data
         titulo = getIntent().getStringExtra("titulo");
@@ -66,14 +66,12 @@ public class DetalheActivity extends AppCompatActivity {
             deleteTextViewBtn.setVisibility(View.VISIBLE);
             ratingBar.setVisibility(GONE);
             rd_group.setVisibility(GONE);
-
-
         }else{
             et_avaliacao.setVisibility(GONE);
             et_tipo.setVisibility(GONE);
         }
 
-        saveBtn.setOnClickListener( (v)-> saveConteudo());
+        saveTextViewBtn.setOnClickListener( (v)-> saveConteudo());
 
        deleteTextViewBtn.setOnClickListener((v)-> deleteConteudoFromFirebase() );
     }
@@ -96,7 +94,14 @@ public class DetalheActivity extends AppCompatActivity {
             Toast.makeText(this, "10 é a nota máxima", Toast.LENGTH_SHORT).show();
             return;
         }else if(conteudoTipo==null || conteudoTitulo.isEmpty()) {
-            Toast.makeText(this, "O tipo é obnrigatório", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "O tipo é obrigatório", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String t1 = "Jogo"; String t2 = "jogo"; String t3 = "Filme"; String t4 = "filme";
+        String t6 = "Série"; String t5 = "série"; String t7 = "Livro"; String t8 = "livro";
+        if(conteudoTipo!= t1 ||conteudoTipo!= t2 ||conteudoTipo!= t3 ||conteudoTipo!= t4 ||
+                conteudoTipo!= t6 ||conteudoTipo!= t5 ||conteudoTipo!= t7 ||conteudoTipo!= t8 ){
+            Toast.makeText(this, "tipo invalido", Toast.LENGTH_SHORT).show();
             return;
         }
         Conteudo conteudo = new Conteudo();
@@ -116,11 +121,11 @@ public class DetalheActivity extends AppCompatActivity {
         String conteudoTipo = et_tipo.getText().toString();
         DocumentReference documentReference;
         if(isEditMode){
-            //update the note
+            //update
             documentReference = Utility.getCollectionReference().document(docId);
 
         }else{
-            //create new note
+            //create new
             documentReference = Utility.getCollectionReference().document();
         }
 
@@ -159,7 +164,7 @@ public class DetalheActivity extends AppCompatActivity {
     public void rating(){
         ratingBar.setOnRatingBarChangeListener((ratingBar, v, b) -> {
             String notaa = String.valueOf(ratingBar.getRating());
-            Toast.makeText(getApplicationContext(), notaa, Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getApplicationContext(), notaa, Toast.LENGTH_SHORT).show();
             et_avaliacao.setText(notaa);
         });
 
@@ -182,6 +187,7 @@ public class DetalheActivity extends AppCompatActivity {
     }
 
 
+
     public void find(){
         et_titulo = findViewById(R.id.conteudo_titulo);
         et_genero = findViewById(R.id.conteudo_genero);
@@ -193,7 +199,7 @@ public class DetalheActivity extends AppCompatActivity {
 
         pageTitleTextView = findViewById(R.id.page_title);
         deleteTextViewBtn  = findViewById(R.id.delete_text_view);
-
+        saveTextViewBtn  = findViewById(R.id.salvar_text_view2);
         rd_group = findViewById(R.id.rd_group);
         rb_filme = findViewById(R.id.rb_filme);
         rb_serie = findViewById(R.id.rb_serie);

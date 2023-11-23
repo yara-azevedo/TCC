@@ -92,11 +92,11 @@ public class LoginActivity extends AppCompatActivity {
         //validate the data that are input by user.
 
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            emailEditText.setError("Email is invalid");
+            emailEditText.setError("E-mail inválido :(");
             return false;
         }
         if(password.length()<6){
-            passwordEditText.setError("Password length is invalid");
+            passwordEditText.setError("Senha curta demais :/");
             return false;
         }
         return true;

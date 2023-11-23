@@ -6,8 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
     android:background="@drawable/borda"
-    android:backgroundTint="@color/azul_medio"
-    android:elevation="10dp"
+    android:backgroundTint="#1C4591"
+    android:elevation="20dp"
     android:padding="12dp">
 
 
@@ -19,7 +19,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:text="Nome"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
         android:maxLines="2"
         android:paddingLeft="10dp"
         android:text="tipoooo"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.046"
@@ -52,7 +52,7 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:text="Nota"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/conteudo_titulo_view" />
@@ -65,7 +65,7 @@
         android:layout_marginTop="4dp"
         android:gravity="right"
         android:text="note title"
-        android:textColor="@color/black"
+        android:textColor="#A7AFC2"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.956"
@@ -80,7 +80,7 @@
         android:layout_marginTop="4dp"
         app:layout_constraintStart_toEndOf="@+id/conteudo_nota_view"
         app:layout_constraintTop_toBottomOf="@+id/conteudo_titulo_view"
-        app:srcCompat="@drawable/icon_star" /><![CDATA[
+        app:srcCompat="@drawable/star_icon" /><![CDATA[
 
     />
 
