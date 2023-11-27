@@ -97,13 +97,13 @@ public class DetalheActivity extends AppCompatActivity {
             Toast.makeText(this, "O tipo é obrigatório", Toast.LENGTH_SHORT).show();
             return;
         }
-        String t1 = "Jogo"; String t2 = "jogo"; String t3 = "Filme"; String t4 = "filme";
+        /*String t1 = "Jogo"; String t2 = "jogo"; String t3 = "Filme"; String t4 = "filme";
         String t6 = "Série"; String t5 = "série"; String t7 = "Livro"; String t8 = "livro";
         if(conteudoTipo!= t1 ||conteudoTipo!= t2 ||conteudoTipo!= t3 ||conteudoTipo!= t4 ||
                 conteudoTipo!= t6 ||conteudoTipo!= t5 ||conteudoTipo!= t7 ||conteudoTipo!= t8 ){
             Toast.makeText(this, "tipo invalido", Toast.LENGTH_SHORT).show();
             return;
-        }
+        }*/
         Conteudo conteudo = new Conteudo();
         conteudo.setTitulo(conteudoTitulo);
         conteudo.setGenero(conteudoGenero);

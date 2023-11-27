@@ -21,6 +21,7 @@ public class SerieActivity extends AppCompatActivity {
     FilmeAdapter filterAdapter;
 
     ImageButton backButton;
+    TextView pageTitleTextView;
 
     TextView count_filme, count_serie, count_jogo, count_livro;
 
@@ -33,6 +34,7 @@ public class SerieActivity extends AppCompatActivity {
         setContentView(R.layout.activity_filme);
 
         find();
+        pageTitleTextView.setText("Séries");
         setupRecyclerView();
         countF(); countJ(); countL(); countS();
         backButton.setOnClickListener(view -> {
@@ -173,6 +175,7 @@ public class SerieActivity extends AppCompatActivity {
         linear_count_jogo = findViewById(R.id.linear_count_jogo);
         linear_count_serie = findViewById(R.id.linear_count_serie);
         linear_count_livro = findViewById(R.id.linear_count_livro);
+        pageTitleTextView = findViewById(R.id.page_title);
 
     }
 }
