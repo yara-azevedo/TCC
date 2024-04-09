@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
        find();
        countF(); countJ(); countL(); countS();
-       selectFiltro();
+       //selectFiltro();
 
         fob.setOnClickListener((v)-> startActivity(new Intent(MainActivity.this, DetalheActivity.class)));
         btn_logoff.setOnClickListener((v)->logout() );
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void selectFiltro(){
+   /* void selectFiltro(){
         linear_count_filme.setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, FilmeActivity.class)));
 
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
         linear_count_livro.setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, LivroActivity.class)));
-    }
+    }*/
 
     private void logout() {
         FirebaseAuth.getInstance().signOut();
